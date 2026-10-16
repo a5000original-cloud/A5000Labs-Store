@@ -840,6 +840,15 @@ function plural(n, one, few, many) {
 
 /* ═══ СТАРТ ═══ */
 renderApps();
+
+/* Регистрация Service Worker — обязательна для установки PWA на Android */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => {
+      console.warn("SW не зарегистрирован:", err);
+    });
+  });
+}
 </script>
 
 </body>
